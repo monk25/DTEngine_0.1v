@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{dd3a7479-88b1-4dfe-80a9-53c4a9e69f1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{c911d0b3-f42b-4bf1-81b0-9eb7c579a2ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Utility">
+      <UniqueIdentifier>{f904dd54-3693-495c-a874-6d13e63cbd4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Utility\pch">
+      <UniqueIdentifier>{f55ba97f-8e7d-4c69-a0c1-b72a2b377fdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Utility\Singleton">
+      <UniqueIdentifier>{f9687b20-b49e-47f1-8161-b299d9e5fee4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Utility\Timer">
+      <UniqueIdentifier>{a69ede22-f97a-468d-932f-6d78191ddd47}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Engine\Utility\pch</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h">
+      <Filter>Engine\Utility\pch</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
