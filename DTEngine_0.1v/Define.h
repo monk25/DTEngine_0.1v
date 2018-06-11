@@ -5,6 +5,8 @@
 #define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
 #endif
 
+const int kScreenWidth = 1280;
+const int kScreenHeight = 720;
 const bool kFullScreen = false;
 const bool kVsyncEnable = true;
 const float kScreenDepth = 1000.0f;
@@ -25,12 +27,12 @@ public:
 		this->bottom = bottom;
 	}
 
-	bool intersectsRect(Rect rect) {
+	bool IntersectsRect(Rect rect) {
 		Rect tmpRect;
 		return IntersectRect(&tmpRect, this, &rect);
 	}
 
-	bool intersectRect(Rect rect, D3DXVECTOR2 pos) {
+	bool IntersectsRect(Rect rect, D3DXVECTOR2 pos) {
 		Rect tmpRect;
 		return IntersectRect(&tmpRect, this, &rect.Offset(pos));
 	}
@@ -67,14 +69,14 @@ inline float Angle(D3DXVECTOR2 v1, D3DXVECTOR2 v2)
 	return atan2(v2.y - v1.y, v2.x - v1.x);
 }
 
-inline int Random(int to, int from)
+inline int Random(int from, int to)
 {
 	static default_random_engine d(timeGetTime());
 	uniform_int_distribution<int> random(from, to);
 	return random(d);
 }
 
-inline float Random(float to, float from)
+inline float Random(float from, float to)
 {
 	static default_random_engine d(timeGetTime());
 	uniform_real_distribution<float> random(from, to);

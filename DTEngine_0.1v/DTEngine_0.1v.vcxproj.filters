@@ -10,14 +10,29 @@
     <Filter Include="Engine\Utility">
       <UniqueIdentifier>{f904dd54-3693-495c-a874-6d13e63cbd4b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Utility\pch">
-      <UniqueIdentifier>{f55ba97f-8e7d-4c69-a0c1-b72a2b377fdb}</UniqueIdentifier>
+    <Filter Include="Engine\World">
+      <UniqueIdentifier>{6fa4c01c-8944-4daa-b4c7-e7adde472025}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Utility\Singleton">
       <UniqueIdentifier>{f9687b20-b49e-47f1-8161-b299d9e5fee4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Utility\Timer">
       <UniqueIdentifier>{a69ede22-f97a-468d-932f-6d78191ddd47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Utility\pch">
+      <UniqueIdentifier>{f55ba97f-8e7d-4c69-a0c1-b72a2b377fdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\System">
+      <UniqueIdentifier>{0eb361c5-a7dd-4725-9f1f-4a9fa4d7489c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Texture">
+      <UniqueIdentifier>{a165b48c-f82c-41ce-a799-8453a07457d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Asset">
+      <UniqueIdentifier>{de867662-cd55-4fbb-9c85-52ae5119e2e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\D3D">
+      <UniqueIdentifier>{dd476bad-4fcc-4578-8014-b83c7394260f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -27,10 +42,37 @@
     <ClCompile Include="pch.cpp">
       <Filter>Engine\Utility\pch</Filter>
     </ClCompile>
+    <ClCompile Include="Singleton.cpp">
+      <Filter>Engine\Utility\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="System.cpp">
+      <Filter>Engine\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Engine\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Asset.cpp">
+      <Filter>Engine\Asset</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
       <Filter>Engine\Utility\pch</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>Engine\Utility\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Define.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="System.h">
+      <Filter>Engine\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Engine\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset.h">
+      <Filter>Engine\Asset</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

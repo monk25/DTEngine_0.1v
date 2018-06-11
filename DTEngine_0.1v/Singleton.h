@@ -3,7 +3,7 @@
 template <typename T>
 class Singleton
 {
-private:
+protected:
 	Singleton();
 	virtual ~Singleton();
 
