@@ -13,16 +13,18 @@ public:
 
 	LRESULT CALLBACK MessageHandle(HWND, UINT, WPARAM, LPARAM);
 
-private:
-	bool Frame();
-	void InitializeWindows();
-	void ShutdownWindows();
-
 	int get_screen_width_();
 	void set_screen_width_(int screen_width);
 
 	int get_screen_height_();
 	void set_screen_height_(int screen_width);
+
+	HWND get_hwnd_();
+
+private:
+	bool Frame();
+	void InitializeWindows();
+	void ShutdownWindows();
 
 private:
 	LPCWSTR application_name_;

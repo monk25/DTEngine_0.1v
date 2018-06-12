@@ -128,6 +128,31 @@ void System::ShutdownWindows()
 	return;
 }
 
+int System::get_screen_width_()
+{
+	return screen_width_;
+}
+
+void System::set_screen_width_(int screen_width)
+{
+	screen_width_ = screen_width;
+}
+
+int System::get_screen_height_()
+{
+	return screen_height_;
+}
+
+void System::set_screen_height_(int screen_height)
+{
+	screen_height_ = screen_height;
+}
+
+HWND System::get_hwnd_()
+{
+	return hwnd_;
+}
+
 LRESULT CALLBACK WndProc(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)
 {
 	switch (umessage) {

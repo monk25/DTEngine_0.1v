@@ -54,6 +54,9 @@
     <ClCompile Include="Asset.cpp">
       <Filter>Engine\Asset</Filter>
     </ClCompile>
+    <ClCompile Include="D3D.cpp">
+      <Filter>Engine\D3D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -73,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="Asset.h">
       <Filter>Engine\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="D3D.h">
+      <Filter>Engine\D3D</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
