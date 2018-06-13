@@ -2,7 +2,6 @@
 #include "Asset.h"
 
 
-template <typename T>
 Asset::Asset()
 {
 }

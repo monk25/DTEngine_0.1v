@@ -42,9 +42,6 @@
     <ClCompile Include="pch.cpp">
       <Filter>Engine\Utility\pch</Filter>
     </ClCompile>
-    <ClCompile Include="Singleton.cpp">
-      <Filter>Engine\Utility\Singleton</Filter>
-    </ClCompile>
     <ClCompile Include="System.cpp">
       <Filter>Engine\System</Filter>
     </ClCompile>
