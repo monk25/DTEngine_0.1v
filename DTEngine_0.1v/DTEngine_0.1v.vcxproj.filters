@@ -10,9 +10,6 @@
     <Filter Include="Engine\Utility">
       <UniqueIdentifier>{f904dd54-3693-495c-a874-6d13e63cbd4b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\World">
-      <UniqueIdentifier>{6fa4c01c-8944-4daa-b4c7-e7adde472025}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Utility\Singleton">
       <UniqueIdentifier>{f9687b20-b49e-47f1-8161-b299d9e5fee4}</UniqueIdentifier>
     </Filter>
@@ -34,6 +31,33 @@
     <Filter Include="Engine\D3D">
       <UniqueIdentifier>{dd476bad-4fcc-4578-8014-b83c7394260f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\World">
+      <UniqueIdentifier>{6fa4c01c-8944-4daa-b4c7-e7adde472025}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Sprite">
+      <UniqueIdentifier>{9172132d-71ed-4876-b6b6-48a4bc0ef988}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Camera">
+      <UniqueIdentifier>{4b38ab0c-83a2-4eb1-b6b4-0c8b178a76db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Shader">
+      <UniqueIdentifier>{d5b2179d-571f-4172-8030-aae1b65d7e87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Shader\HLSL">
+      <UniqueIdentifier>{bcc5f6eb-f610-4cb2-a3e2-24dc5285aabe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity">
+      <UniqueIdentifier>{d98e2986-642b-4aff-a1c6-f0e8a59ea0ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Scene">
+      <UniqueIdentifier>{de9ecd72-c944-40b9-8f7a-3d19c1bb4bcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Texture\Bitmap">
+      <UniqueIdentifier>{2f291924-2ccf-41bd-94fe-16b87a0a4cec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Shader\ShaderClass">
+      <UniqueIdentifier>{cf1f812d-b318-484f-b3d5-b54ba57d5476}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -54,6 +78,28 @@
     <ClCompile Include="D3D.cpp">
       <Filter>Engine\D3D</Filter>
     </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>Engine\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Engine\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Engine\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Engine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Bitmap.cpp">
+      <Filter>Engine\Texture\Bitmap</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureShader.cpp">
+      <Filter>Engine\Shader\ShaderClass</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Engine\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -77,5 +123,35 @@
     <ClInclude Include="D3D.h">
       <Filter>Engine\D3D</Filter>
     </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>Engine\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Engine\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Engine\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Engine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Bitmap.h">
+      <Filter>Engine\Texture\Bitmap</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureShader.h">
+      <Filter>Engine\Shader\ShaderClass</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Engine\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="TestScene.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Shader\Texture.ps">
+      <Filter>Engine\Shader\HLSL</Filter>
+    </None>
+    <None Include="..\Shader\Texture.vs">
+      <Filter>Engine\Shader\HLSL</Filter>
+    </None>
   </ItemGroup>
 </Project>

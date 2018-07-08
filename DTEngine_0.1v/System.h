@@ -35,4 +35,4 @@ private:
 };
 
 static LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
-static System * application_handle_ = NULL;
+extern System * application_handle_;

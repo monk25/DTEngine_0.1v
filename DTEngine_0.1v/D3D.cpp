@@ -9,8 +9,7 @@ D3D::D3D() :
 	depth_stencil_state_(nullptr), depth_stencil_view_(nullptr),
 	raster_state_(nullptr), depth_disabled_stencil_state_(nullptr)
 {
-	Initialize(application_handle_->get_screen_width_(), application_handle_->get_screen_height_(),
-		kVsyncEnable, application_handle_->get_hwnd_(), kFullScreen, kScreenDepth, kScreenNear);
+	Initialize(application_handle_->get_screen_width_(), application_handle_->get_screen_height_(), application_handle_->get_hwnd_());
 }
 
 D3D::D3D(const D3D& other)
@@ -33,8 +32,7 @@ D3D::~D3D()
 	return;
 }
 
-bool D3D::Initialize(int screen_width, int screen_height, bool vsync,
-	HWND hwnd, bool fullscreen, float screen_depth, float screen_near)
+bool D3D::Initialize(int kScreenWidth, int kScreenHidth, HWND hwnd)
 {
 	HRESULT result;
 	IDXGIFactory* factory;
@@ -55,7 +53,7 @@ bool D3D::Initialize(int screen_width, int screen_height, bool vsync,
 	float field_of_view, screen_aspect;
 	D3D11_DEPTH_STENCIL_DESC depth_disabled_stencil_desc;
 
-	vsync_enabled_ = vsync;
+	vsync_enabled_ = kVsyncEnable;
 
 	result = CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)&factory);
 	if (FAILED(result)) {
@@ -88,8 +86,8 @@ bool D3D::Initialize(int screen_width, int screen_height, bool vsync,
 	}
 
 	for (int i = 0; i < num_modes; i++) {
-		if (display_mode_list[i].Width == (unsigned int)screen_width) {
-			if (display_mode_list[i].Height == (unsigned int)screen_height) {
+		if (display_mode_list[i].Width == (unsigned int)kScreenWidth) {
+			if (display_mode_list[i].Height == (unsigned int)kScreenHidth) {
 				numerator = display_mode_list[i].RefreshRate.Numerator;
 				denominator = display_mode_list[i].RefreshRate.Denominator;
 			}
@@ -115,8 +113,8 @@ bool D3D::Initialize(int screen_width, int screen_height, bool vsync,
 
 	ZeroMemory(&swap_chain_desc, sizeof(swap_chain_desc));
 	swap_chain_desc.BufferCount = 1;
-	swap_chain_desc.BufferDesc.Width = screen_width;
-	swap_chain_desc.BufferDesc.Height = screen_height;
+	swap_chain_desc.BufferDesc.Width = kScreenWidth;
+	swap_chain_desc.BufferDesc.Height = kScreenHidth;
 	swap_chain_desc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 
 	if (vsync_enabled_) {
@@ -133,7 +131,7 @@ bool D3D::Initialize(int screen_width, int screen_height, bool vsync,
 	swap_chain_desc.SampleDesc.Count = 1;
 	swap_chain_desc.SampleDesc.Quality = 0;
 
-	if (fullscreen) {
+	if (kFullScreen) {
 		swap_chain_desc.Windowed = false;
 	}
 	else {
@@ -165,8 +163,8 @@ bool D3D::Initialize(int screen_width, int screen_height, bool vsync,
 	back_buffer_ptr->Release();
 
 	ZeroMemory(&depth_buffer_desc, sizeof(depth_buffer_desc));
-	depth_buffer_desc.Width = screen_width;
-	depth_buffer_desc.Height = screen_height;
+	depth_buffer_desc.Width = kScreenWidth;
+	depth_buffer_desc.Height = kScreenHidth;
 	depth_buffer_desc.MipLevels = 1;
 	depth_buffer_desc.ArraySize = 1;
 	depth_buffer_desc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
@@ -233,8 +231,8 @@ bool D3D::Initialize(int screen_width, int screen_height, bool vsync,
 
 	device_context_->RSSetState(raster_state_);
 
-	viewport.Width = (float)screen_width;
-	viewport.Height = (float)screen_height;
+	viewport.Width = (float)kScreenWidth;
+	viewport.Height = (float)kScreenHidth;
 	viewport.MinDepth = 0.0f;
 	viewport.MaxDepth = 1.0f;
 	viewport.TopLeftX = 0.0f;
@@ -242,10 +240,10 @@ bool D3D::Initialize(int screen_width, int screen_height, bool vsync,
 	device_context_->RSSetViewports(1, &viewport);
 
 	field_of_view = (float)D3DX_PI / 4.0f;
-	screen_aspect = (float)screen_width / (float)screen_height;
-	D3DXMatrixPerspectiveFovLH(&projection_matrix_, field_of_view, screen_aspect, screen_near, screen_depth);
+	screen_aspect = (float)kScreenWidth / (float)kScreenHidth;
+	D3DXMatrixPerspectiveFovLH(&projection_matrix_, field_of_view, screen_aspect, kScreenNear, kScreenDepth);
 	D3DXMatrixIdentity(&world_matrix_);
-	D3DXMatrixOrthoLH(&ortho_matrix_, (float)screen_width, (float)screen_height, screen_near, screen_depth);
+	D3DXMatrixOrthoLH(&ortho_matrix_, (float)kScreenWidth, (float)kScreenHidth, kScreenNear, kScreenDepth);
 
 	ZeroMemory(&depth_disabled_stencil_desc, sizeof(depth_disabled_stencil_desc));
 
@@ -309,22 +307,19 @@ ID3D11DeviceContext* D3D::get_device_context_()
 	return device_context_;
 }
 
-void D3D::get_projection_matrix_(D3DXMATRIX& projection_matrix)
+D3DXMATRIX D3D::get_projection_matrix_()
 {
-	projection_matrix = projection_matrix_;
-	return;
+	return projection_matrix_;
 }
 
-void D3D::get_world_matrix_(D3DXMATRIX& world_matrix)
+D3DXMATRIX D3D::get_world_matrix_()
 {
-	world_matrix = world_matrix_;
-	return;
+	return world_matrix_;
 }
 
-void D3D::get_ortho_matrix_(D3DXMATRIX& ortho_matrix)
+D3DXMATRIX D3D::get_ortho_matrix_()
 {
-	ortho_matrix = ortho_matrix_;
-	return;
+	return ortho_matrix_;
 }
 
 void D3D::get_video_card_info(char* cardName, int& memory)

@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "System.h"
+#include "World.h"
 
 #if defined(DEBUG) | defined(_DEBUG)
 int main()
@@ -11,7 +12,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdling,
 
 	system = new System();
 
+	World::GetInstance().Initialize(1280, 720);
+
 	system->Run();
+
+	World::GetInstance().Dispose();
 
 	delete system;
 

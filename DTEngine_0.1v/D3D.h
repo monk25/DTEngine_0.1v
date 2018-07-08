@@ -17,22 +17,23 @@ public:
 	D3D(const D3D&);
 	~D3D();
 
-	bool Initialize(int, int, bool, HWND, bool, float, float);
-
 	void BeginScene(float, float, float, float);
 	void EndScene();
 
 	ID3D11Device* get_device_();
 	ID3D11DeviceContext* get_device_context_();
 
-	void get_projection_matrix_(D3DXMATRIX&);
-	void get_world_matrix_(D3DXMATRIX&);
-	void get_ortho_matrix_(D3DXMATRIX&);
+	D3DXMATRIX get_projection_matrix_();
+	D3DXMATRIX get_world_matrix_();
+	D3DXMATRIX get_ortho_matrix_();
 
 	void get_video_card_info(char*, int&);
 
 	void TurnZBufferOn();
 	void TurnZBufferOff();
+
+private:
+	bool Initialize(int, int, HWND);
 
 private:
 	bool vsync_enabled_;

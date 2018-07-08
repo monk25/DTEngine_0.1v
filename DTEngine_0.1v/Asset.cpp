@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Asset.h"
+#include "World.h"
 
 
 Asset::Asset()
@@ -55,10 +56,21 @@ Texture* Asset::GetTexture(wstring p)
 
 	if (!textures_[p]) {
 		textures_[p] = new Texture();
-		//D3DX11CreateShaderResourceViewFromFile(, p.data(), &textures_[p]->info_, NULL, &textures_[p]->texture_, NULL);
+		D3DX11CreateShaderResourceViewFromFile(
+			World::GetInstance().get_d3d_()->get_device_(), p.data(), &textures_[p]->get_info_(), NULL, &textures_[p]->get_texture_(), NULL);
 
 		files_loaded_++;
 	}
 
 	return textures_[p];
+}
+
+int Asset::get_files_loaded_()
+{
+	return files_loaded_;
+}
+
+int Asset::get_files_to_load_()
+{
+	return files_to_load_;
 }

@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "System.h"
+#include "World.h"
 
 
 System::System() : screen_width_(0), screen_height_(0)
@@ -40,12 +41,17 @@ void System::Run()
 				MessageBox(hwnd_, L"Frame Processing Failed", L"Error", MB_OK);
 				done = true;
 			}
+			if (World::GetInstance().GetKeyState(VK_ESCAPE) > 0) {
+				done = true;
+			}
 		}
 	}
 }
 
 bool System::Frame()
 {
+	World::GetInstance().Update();
+	World::GetInstance().Render();
 	return true;
 }
 
@@ -168,3 +174,5 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)
 		application_handle_->MessageHandle(hwnd, umessage, wparam, lparam);
 	}
 }
+
+System* application_handle_;
