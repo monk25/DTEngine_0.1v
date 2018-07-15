@@ -6,7 +6,6 @@ class System
 {
 public:
 	System();
-	System(const System&);
 	~System();
 
 	void Run();

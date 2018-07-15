@@ -12,9 +12,6 @@ Sprite::Sprite(wstring path) : color_(1, 1, 1, 1), bitmap_(nullptr)
 	SetPath(path);
 }
 
-Sprite::Sprite(const Sprite& other)
-{
-}
 
 Sprite::~Sprite()
 {
@@ -30,7 +27,6 @@ void Sprite::Render()
 {
 	if (!get_visible_() || bitmap_ == nullptr) return;
 	Entity::Render();
-
 
 	bitmap_->Render(get_pos_().x, get_pos_().y);
 	World::GetInstance().RenderTextureShader(bitmap_->get_index_count_(), bitmap_->get_texture_()->get_texture_());

@@ -12,9 +12,6 @@ Entity::Entity() :
 {
 }
 
-Entity::Entity(const Entity& other)
-{
-}
 
 Entity::~Entity()
 {

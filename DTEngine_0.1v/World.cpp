@@ -9,9 +9,6 @@ World::World()
 {
 }
 
-World::World(const World& other)
-{
-}
 
 World::~World()
 {
@@ -25,6 +22,7 @@ void World::Initialize(int screenWidth, int screenHeight)
 	ZeroMemory(last_keys_, sizeof(last_keys_));
 	start_clock_ = current_clock_ = last_clock_ = clock();
 	d3d_ = new D3D();
+	//bitmap_ = new Bitmap();
 	texture_shader_ = new TextureShader();
 	ChangeScene(new TestScene());
 }
@@ -41,10 +39,10 @@ void World::Render()
 	d3d_->BeginScene(0.0f, 0.0f, 0.0f, 1.0f);
 	current_scene_->get_camera_()->Render();
 
-	view_matrix = current_scene_->get_camera_()->get_view_matrix_();
-	world_matrix = d3d_->get_world_matrix_();
-	projection_matrix = d3d_->get_projection_matrix_();
-	ortho_matrix = d3d_->get_ortho_matrix_();
+	//view_matrix = current_scene_->get_camera_()->get_view_matrix_();
+	//world_matrix = d3d_->get_world_matrix_();
+	//projection_matrix = d3d_->get_projection_matrix_();
+	//ortho_matrix = d3d_->get_ortho_matrix_();
 
 	d3d_->TurnZBufferOff();
 	current_scene_->Render();
@@ -65,6 +63,12 @@ void World::Update()
 
 	GetCursorPos(&mouse_pos_);
 	ScreenToClient(application_handle_->get_hwnd_(), &mouse_pos_);
+
+	for (auto* timer : timers)
+		timer->Update(dt_);
+
+	if (current_scene_)
+		current_scene_->Update(dt_);
 }
 
 void World::ChangeScene(Scene* scene)
@@ -99,6 +103,11 @@ Scene* World::get_current_scene_()
 D3D* World::get_d3d_()
 {
 	return d3d_;
+}
+
+Bitmap* World::get_bitmap_()
+{
+	return bitmap_;
 }
 
 TextureShader* World::get_texture_shader_()

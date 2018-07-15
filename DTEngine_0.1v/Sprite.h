@@ -8,12 +8,12 @@ class Sprite :
 public:
 	Sprite();
 	Sprite(wstring path);
-	Sprite(const Sprite& other);
 	~Sprite();
 
 	void SetPath(wstring path);
 	void Render();
 
+private:
 	Bitmap* bitmap_;
 	D3DXCOLOR color_;
 };

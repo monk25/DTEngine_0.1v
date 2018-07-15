@@ -13,9 +13,6 @@ Camera::Camera()
 	rotation_z_ = 0.0f;
 }
 
-Camera::Camera(const Camera& other)
-{
-}
 
 Camera::~Camera()
 {

@@ -8,13 +8,10 @@ System::System() : screen_width_(0), screen_height_(0)
 	InitializeWindows();
 }
 
-System::System(const System& other)
-{
-	ShutdownWindows();
-}
 
 System::~System()
 {
+	ShutdownWindows();
 }
 
 void System::Run()

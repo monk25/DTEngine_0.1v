@@ -5,7 +5,6 @@ class Entity
 {
 public:
 	Entity();
-	Entity(const Entity&);
 	virtual ~Entity();
 
 	virtual void Update(float dt);

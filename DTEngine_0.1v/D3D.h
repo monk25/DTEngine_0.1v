@@ -14,7 +14,6 @@ class D3D
 {
 public:
 	D3D();
-	D3D(const D3D&);
 	~D3D();
 
 	void BeginScene(float, float, float, float);

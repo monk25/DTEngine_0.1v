@@ -9,13 +9,10 @@ previous_pos_x_(-1), previous_pos_y_(-1)
 {
 	InitializeBuffers();
 	LoadTexture(texture_filename);
-	bitmap_width_ = 100;// texture_->get_info_().Width;
-	bitmap_height_ = 100;// texture_->get_info_().Height;
+	bitmap_width_ = texture_->get_info_().Width;
+	bitmap_height_ = texture_->get_info_().Height;
 }
 
-Bitmap::Bitmap(const Bitmap& other)
-{
-}
 
 Bitmap::~Bitmap()
 {

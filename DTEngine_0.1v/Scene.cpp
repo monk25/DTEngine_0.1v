@@ -8,9 +8,6 @@ Scene::Scene() : follow_target_(nullptr), camera_(nullptr)
 	camera_->SetPosition(0.0f, 0.0f, -5.0f);
 }
 
-Scene::Scene(const Scene& other)
-{
-}
 
 Scene::~Scene()
 {

@@ -13,7 +13,6 @@ private:
 
 public:
 	TextureShader();
-	TextureShader(const TextureShader&);
 	~TextureShader();
 
 	void Render(int, D3DXMATRIX, D3DXMATRIX, D3DXMATRIX, ID3D11ShaderResourceView*);

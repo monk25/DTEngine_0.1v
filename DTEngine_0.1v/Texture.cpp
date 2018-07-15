@@ -6,9 +6,6 @@ Texture::Texture() : texture_(nullptr)
 {
 }
 
-Texture::Texture(const Texture& other)
-{
-}
 
 Texture::~Texture()
 {
@@ -20,7 +17,7 @@ ID3D11ShaderResourceView*& Texture::get_texture_()
 	return texture_;
 }
 
-D3DX11_IMAGE_LOAD_INFO& Texture::get_info_()
+D3DX11_IMAGE_INFO& Texture::get_info_()
 {
 	return info_;
 }

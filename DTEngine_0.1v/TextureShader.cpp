@@ -10,9 +10,6 @@ layout_(nullptr), matrix_buffer_(nullptr), sampler_state_(nullptr)
 	InitializeShader(const_cast<WCHAR*>(L"../Shader/Texture.vs"), const_cast<WCHAR*>(L"../Shader/Texture.ps"));
 }
 
-TextureShader::TextureShader(const TextureShader& other)
-{
-}
 
 TextureShader::~TextureShader()
 {

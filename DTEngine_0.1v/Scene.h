@@ -7,7 +7,6 @@ class Scene :
 {
 public:
 	Scene();
-	Scene(const Scene&);
 	~Scene();
 
 	void Update(float dt);

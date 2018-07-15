@@ -12,9 +12,6 @@ D3D::D3D() :
 	Initialize(application_handle_->get_screen_width_(), application_handle_->get_screen_height_(), application_handle_->get_hwnd_());
 }
 
-D3D::D3D(const D3D& other)
-{
-}
 
 D3D::~D3D()
 {

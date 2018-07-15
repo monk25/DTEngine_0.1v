@@ -57,7 +57,8 @@ Texture* Asset::GetTexture(wstring p)
 	if (!textures_[p]) {
 		textures_[p] = new Texture();
 		D3DX11CreateShaderResourceViewFromFile(
-			World::GetInstance().get_d3d_()->get_device_(), p.data(), &textures_[p]->get_info_(), NULL, &textures_[p]->get_texture_(), NULL);
+			World::GetInstance().get_d3d_()->get_device_(), p.data(), NULL, NULL, &textures_[p]->get_texture_(), NULL);
+		D3DX11GetImageInfoFromFile(p.data(), NULL, &textures_[p]->get_info_(), NULL);
 
 		files_loaded_++;
 	}

@@ -12,7 +12,6 @@ private:
 	};
 public:
 	Bitmap(WCHAR*);
-	Bitmap(const Bitmap& other);
 	~Bitmap();
 
 	void Render(int, int);

@@ -3,14 +3,15 @@
 #include "Singleton.h"
 #include "D3D.h"
 #include "TextureShader.h"
+#include "Bitmap.h"
 #include "Scene.h"
+#include "Timer.h"
 
 class World :
 	public Singleton<World>
 {
 public:
 	World();
-	World(const World&);
 	~World();
 
 	void Initialize(int screenWidth, int screenHeight);
@@ -26,6 +27,7 @@ public:
 
 	Scene* get_current_scene_();
 	D3D* get_d3d_();
+	Bitmap* get_bitmap_();
 	TextureShader* get_texture_shader_();
 
 private:
@@ -39,7 +41,9 @@ private:
 	clock_t last_clock_;
 	double dt_;
 
+	vector<Timer*> timers;
 	D3D* d3d_;
+	Bitmap* bitmap_;
 	TextureShader* texture_shader_;
 };
 
