@@ -22,7 +22,7 @@ void World::Initialize(int screenWidth, int screenHeight)
 	ZeroMemory(last_keys_, sizeof(last_keys_));
 	start_clock_ = current_clock_ = last_clock_ = clock();
 	d3d_ = new D3D();
-	//bitmap_ = new Bitmap();
+	bitmap_ = new Bitmap();
 	texture_shader_ = new TextureShader();
 	ChangeScene(new TestScene());
 }
@@ -37,12 +37,12 @@ void World::Render()
 	D3DXMATRIX world_matrix, view_matrix, projection_matrix, ortho_matrix;
 
 	d3d_->BeginScene(0.0f, 0.0f, 0.0f, 1.0f);
-	current_scene_->get_camera_()->Render();
+	current_scene_->GetCamera()->Render();
 
-	//view_matrix = current_scene_->get_camera_()->get_view_matrix_();
-	//world_matrix = d3d_->get_world_matrix_();
-	//projection_matrix = d3d_->get_projection_matrix_();
-	//ortho_matrix = d3d_->get_ortho_matrix_();
+	//view_matrix = current_scene_->GetCamera()->GetViewMatrix();
+	//world_matrix = d3d_->GetWorldMatrix();
+	//projection_matrix = d3d_->GetProjectionMatrix();
+	//ortho_matrix = d3d_->GetOrthoMatrix();
 
 	d3d_->TurnZBufferOff();
 	current_scene_->Render();
@@ -92,25 +92,25 @@ D3DXVECTOR2 World::GetMousePos()
 
 void World::RenderTextureShader(int index_count, ID3D11ShaderResourceView* texture)
 {
-	texture_shader_->Render(index_count, d3d_->get_world_matrix_(), current_scene_->get_camera_()->get_view_matrix_(), d3d_->get_ortho_matrix_(), texture);
+	texture_shader_->Render(index_count, d3d_->GetWorldMatrix(), current_scene_->GetCamera()->GetViewMatrix(), d3d_->GetOrthoMatrix(), texture);
 }
 
-Scene* World::get_current_scene_()
+Scene* World::GetCurrentScene()
 {
 	return current_scene_;
 }
 
-D3D* World::get_d3d_()
+D3D* World::GetD3D()
 {
 	return d3d_;
 }
 
-Bitmap* World::get_bitmap_()
+Bitmap* World::GetBitmap()
 {
 	return bitmap_;
 }
 
-TextureShader* World::get_texture_shader_()
+TextureShader* World::GetTextureShader()
 {
 	return texture_shader_;
 }

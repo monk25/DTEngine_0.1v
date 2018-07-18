@@ -294,32 +294,32 @@ void D3D::EndScene()
 	return;
 }
 
-ID3D11Device* D3D::get_device_()
+ID3D11Device* D3D::GetDevice()
 {
 	return device_;
 }
 
-ID3D11DeviceContext* D3D::get_device_context_()
+ID3D11DeviceContext* D3D::GetDeviceContext()
 {
 	return device_context_;
 }
 
-D3DXMATRIX D3D::get_projection_matrix_()
+D3DXMATRIX D3D::GetProjectionMatrix()
 {
 	return projection_matrix_;
 }
 
-D3DXMATRIX D3D::get_world_matrix_()
+D3DXMATRIX D3D::GetWorldMatrix()
 {
 	return world_matrix_;
 }
 
-D3DXMATRIX D3D::get_ortho_matrix_()
+D3DXMATRIX D3D::GetOrthoMatrix()
 {
 	return ortho_matrix_;
 }
 
-void D3D::get_video_card_info(char* cardName, int& memory)
+void D3D::GetVideoCardInfo(char* cardName, int& memory)
 {
 	strcpy_s(cardName, 128, video_card_description_);
 	memory = video_card_memory_;

@@ -1,6 +1,7 @@
 #pragma once
 #include "Scene.h"
 #include "Sprite.h"
+#include "Animation.h"
 
 class TestScene :
 	public Scene
@@ -13,5 +14,6 @@ public:
 	void Update(float dt);
 
 	Sprite* spr;
+	Animation* ani;
 };
 

@@ -14,7 +14,7 @@ public:
 	void UnFollow();
 	void Shake(int cnt, float range, float duration);
 
-	Camera* get_camera_();
+	Camera* GetCamera();
 	
 private:
 	Entity* follow_target_;

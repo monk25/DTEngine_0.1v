@@ -1,6 +1,6 @@
 #pragma once
 #include "Define.h"
-#include "Texture.h"
+#include "Sprite.h"
 
 class Bitmap
 {
@@ -11,31 +11,14 @@ private:
 		D3DXVECTOR2 texture;
 	};
 public:
-	Bitmap(WCHAR*);
+	Bitmap();
 	~Bitmap();
 
-	void Render(int, int);
-
-	int get_index_count_();
-	Texture* get_texture_();
+	void InitializeBuffers(Texture* texture);
+	void Render(Sprite* sprite);
 
 private:
-	void InitializeBuffers();
-	void ShutdownBuffers();
-	void UpdateBuffers(int, int);
-	void RenderBuffers();
-
-	void LoadTexture(WCHAR*);
-
-private:
-	ID3D11Buffer* vertex_buffer_, * index_buffer_;
-	int vertex_count_, index_count_;
-
-	int screen_width_, screen_height_;
-	int bitmap_width_, bitmap_height_;
-	int previous_pos_x_, previous_pos_y_;
-
-private:
-	Texture * texture_;
+	void UpdateBuffers(Sprite* sprite);
+	void RenderBuffers(Texture* texture);
 };
 

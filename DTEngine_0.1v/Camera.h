@@ -15,7 +15,7 @@ public:
 
 	void Render();
 
-	D3DXMATRIX get_view_matrix_();
+	D3DXMATRIX GetViewMatrix();
 
 private:
 	float position_x_, position_y_, position_z_;

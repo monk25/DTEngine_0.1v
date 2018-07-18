@@ -1,13 +1,14 @@
 #include "pch.h"
 #include "Sprite.h"
 #include "World.h"
+#include "Asset.h"
 
 
-Sprite::Sprite() : color_(1, 1, 1, 1), bitmap_(nullptr)
+Sprite::Sprite() : color_(1, 1, 1, 1), texture_(nullptr)
 {
 }
 
-Sprite::Sprite(wstring path) : color_(1, 1, 1, 1), bitmap_(nullptr)
+Sprite::Sprite(wstring path) : color_(1, 1, 1, 1), texture_(nullptr)
 {
 	SetPath(path);
 }
@@ -15,19 +16,30 @@ Sprite::Sprite(wstring path) : color_(1, 1, 1, 1), bitmap_(nullptr)
 
 Sprite::~Sprite()
 {
-	delete bitmap_;
+	delete texture_;
 }
 
 void Sprite::SetPath(wstring path)
 {
-	bitmap_ = new Bitmap(const_cast<WCHAR*>(path.c_str()));
+	texture_ = Asset::GetInstance().GetTexture(path);
+	SetRect(Rect(0, 0, texture_->GetInfo().Width, texture_->GetInfo().Height));
 }
 
 void Sprite::Render()
 {
-	if (!get_visible_() || bitmap_ == nullptr) return;
+	if (!GetVisible() || texture_ == nullptr) return;
 	Entity::Render();
 
-	bitmap_->Render(get_pos_().x, get_pos_().y);
-	World::GetInstance().RenderTextureShader(bitmap_->get_index_count_(), bitmap_->get_texture_()->get_texture_());
+	World::GetInstance().GetBitmap()->Render(this);
+	World::GetInstance().RenderTextureShader(texture_->GetIndexCount(), texture_->GetTexture());
+}
+
+Texture* Sprite::GetTexture()
+{
+	return texture_;
+}
+
+void Sprite::SetTexture(Texture* texture)
+{
+	texture_ = texture;
 }

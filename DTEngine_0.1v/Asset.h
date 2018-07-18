@@ -17,8 +17,8 @@ public:
 
 	Texture* GetTexture(wstring p);
 
-	int get_files_to_load_();
-	int get_files_loaded_();
+	int GetFilesToLoad();
+	int GetFilesLoaded();
 
 private:
 	map<wstring, Texture*> textures_;

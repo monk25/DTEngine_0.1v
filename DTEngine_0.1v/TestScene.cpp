@@ -5,8 +5,11 @@
 TestScene::TestScene()
 {
 	spr = new Sprite(L"../Resource/seafloor.dds");
-	//spr->set_pos_(D3DXVECTOR2(1280, 720) / 2);
 	AddChild(spr);
+
+	ani = new Animation(L"../Resource/0", 12, 24);
+	ani->SetPos(D3DXVECTOR2(100, 0));
+	AddChild(ani);
 }
 
 

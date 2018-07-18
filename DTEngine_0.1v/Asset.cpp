@@ -57,8 +57,10 @@ Texture* Asset::GetTexture(wstring p)
 	if (!textures_[p]) {
 		textures_[p] = new Texture();
 		D3DX11CreateShaderResourceViewFromFile(
-			World::GetInstance().get_d3d_()->get_device_(), p.data(), NULL, NULL, &textures_[p]->get_texture_(), NULL);
-		D3DX11GetImageInfoFromFile(p.data(), NULL, &textures_[p]->get_info_(), NULL);
+			World::GetInstance().GetD3D()->GetDevice(), p.data(), NULL, NULL, &textures_[p]->GetTexture(), NULL);
+		D3DX11GetImageInfoFromFile(p.data(), NULL, &textures_[p]->GetInfo(), NULL);
+		
+		World::GetInstance().GetBitmap()->InitializeBuffers(textures_[p]);
 
 		files_loaded_++;
 	}
@@ -66,12 +68,12 @@ Texture* Asset::GetTexture(wstring p)
 	return textures_[p];
 }
 
-int Asset::get_files_loaded_()
+int Asset::GetFilesLoaded()
 {
 	return files_loaded_;
 }
 
-int Asset::get_files_to_load_()
+int Asset::GetFilesToLoad()
 {
 	return files_to_load_;
 }

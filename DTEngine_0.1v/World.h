@@ -25,10 +25,10 @@ public:
 
 	void RenderTextureShader(int index_count, ID3D11ShaderResourceView* texture);
 
-	Scene* get_current_scene_();
-	D3D* get_d3d_();
-	Bitmap* get_bitmap_();
-	TextureShader* get_texture_shader_();
+	Scene* GetCurrentScene();
+	D3D* GetD3D();
+	Bitmap* GetBitmap();
+	TextureShader* GetTextureShader();
 
 private:
 	Scene* current_scene_;

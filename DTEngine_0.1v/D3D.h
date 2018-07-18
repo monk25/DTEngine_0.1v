@@ -19,14 +19,14 @@ public:
 	void BeginScene(float, float, float, float);
 	void EndScene();
 
-	ID3D11Device* get_device_();
-	ID3D11DeviceContext* get_device_context_();
+	ID3D11Device* GetDevice();
+	ID3D11DeviceContext* GetDeviceContext();
 
-	D3DXMATRIX get_projection_matrix_();
-	D3DXMATRIX get_world_matrix_();
-	D3DXMATRIX get_ortho_matrix_();
+	D3DXMATRIX GetProjectionMatrix();
+	D3DXMATRIX GetWorldMatrix();
+	D3DXMATRIX GetOrthoMatrix();
 
-	void get_video_card_info(char*, int&);
+	void GetVideoCardInfo(char*, int&);
 
 	void TurnZBufferOn();
 	void TurnZBufferOff();

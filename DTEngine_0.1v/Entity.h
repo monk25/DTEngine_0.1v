@@ -15,31 +15,31 @@ public:
 	void SetCenter(D3DXVECTOR2 pos);
 	D3DXVECTOR2 Center();
 
-	D3DXVECTOR2 get_pos_();
-	void set_pos_(D3DXVECTOR2 pos);
+	D3DXVECTOR2 GetPos();
+	void SetPos(D3DXVECTOR2 pos);
 
-	float get_rotation_();
-	void set_rotation_(float rotation);
+	float GetRotation();
+	void SetRotation(float rotation);
 
-	D3DXVECTOR2 get_rotation_center_();
-	void set_rotation_center(D3DXVECTOR2 rotation_center);
+	D3DXVECTOR2 GetRotationCenter();
+	void SetRotationCenter(D3DXVECTOR2 rotation_center);
 
-	D3DXVECTOR2 get_scale_();
-	void set_scale_(D3DXVECTOR2 scale);
+	D3DXVECTOR2 GetScale();
+	void SetScale(D3DXVECTOR2 scale);
 
-	D3DXVECTOR2 get_scale_center_();
-	void set_scale_center_(D3DXVECTOR2 scale_center);
+	D3DXVECTOR2 GetScaleCenter();
+	void SetScaleCenter(D3DXVECTOR2 scale_center);
 
-	Rect get_rect_();
-	void set_rect_(Rect rect);
+	Rect GetRect();
+	void SetRect(Rect rect);
 
-	Rect get_visible_rect_();
-	void set_visible_rect_(Rect rect);
+	Rect GetVisibleRect();
+	void SetVisibleRect(Rect rect);
 
-	bool get_visible_();
-	void set_visible_(bool visible);
+	bool GetVisible();
+	void SetVisible(bool visible);
 
-	bool get_removing_();
+	bool GetRemoving();
 
 private:
 	Entity * parent_;

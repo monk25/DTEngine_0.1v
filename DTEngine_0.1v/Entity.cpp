@@ -38,7 +38,7 @@ void Entity::Update(float dt)
 		child->Update(dt);
 
 	children_.erase(remove_if(children_.begin(), children_.end(), [](Entity* child) {
-		if (child->get_removing_()) {
+		if (child->GetRemoving()) {
 			delete child;
 			return true;
 		}
@@ -74,87 +74,87 @@ void Entity::SetCenter(D3DXVECTOR2 pos)
 	pos_ = pos - rect_.Center();
 }
 
-D3DXVECTOR2 Entity::get_pos_()
+D3DXVECTOR2 Entity::GetPos()
 {
 	return pos_;
 }
 
-void Entity::set_pos_(D3DXVECTOR2 pos)
+void Entity::SetPos(D3DXVECTOR2 pos)
 {
 	pos_ = pos;
 }
 
-float Entity::get_rotation_()
+float Entity::GetRotation()
 {
 	return rotation_;
 }
 
-void Entity::set_rotation_(float rotation)
+void Entity::SetRotation(float rotation)
 {
 	rotation_ = rotation;
 }
 
-D3DXVECTOR2 Entity::get_rotation_center_()
+D3DXVECTOR2 Entity::GetRotationCenter()
 {
 	return rotation_center_;
 }
 
-void Entity::set_rotation_center(D3DXVECTOR2 rotation_center)
+void Entity::SetRotationCenter(D3DXVECTOR2 rotation_center)
 {
 	rotation_center_ = rotation_center;
 }
 
-D3DXVECTOR2 Entity::get_scale_()
+D3DXVECTOR2 Entity::GetScale()
 {
 	return scale_;
 }
 
-void Entity::set_scale_(D3DXVECTOR2 scale)
+void Entity::SetScale(D3DXVECTOR2 scale)
 {
 	scale_ = scale;
 }
 
-D3DXVECTOR2 Entity::get_scale_center_()
+D3DXVECTOR2 Entity::GetScaleCenter()
 {
 	return scale_center_;
 }
 
-void Entity::set_scale_center_(D3DXVECTOR2 scale_center)
+void Entity::SetScaleCenter(D3DXVECTOR2 scale_center)
 {
 	scale_center_ = scale_center;
 }
 
-Rect Entity::get_rect_()
+Rect Entity::GetRect()
 {
 	return rect_;
 }
 
-void Entity::set_rect_(Rect rect)
+void Entity::SetRect(Rect rect)
 {
 	rect_ = rect;
 }
 
-Rect Entity::get_visible_rect_()
+Rect Entity::GetVisibleRect()
 {
 	return visible_rect_;
 }
 
-void Entity::set_visible_rect_(Rect rect)
+void Entity::SetVisibleRect(Rect rect)
 {
 	visible_rect_ = rect;
 }
 
-bool Entity::get_visible_()
+bool Entity::GetVisible()
 {
 	return visible_;
 }
 
-void Entity::set_visible_(bool visible)
+void Entity::SetVisible(bool visible)
 {
 	visible_ = visible;
 }
 
-bool Entity::get_removing_()
+bool Entity::GetRemoving()
 {
 	return removing_;
 }

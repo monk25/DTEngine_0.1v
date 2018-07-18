@@ -38,7 +38,7 @@ void TextureShader::InitializeShader(WCHAR* vs_filename, WCHAR* ps_filename)
 	D3D11_BUFFER_DESC matrix_buffer_desc;
 	D3D11_SAMPLER_DESC sampler_desc;
 
-	D3D* d3d = World::GetInstance().get_d3d_();
+	D3D* d3d = World::GetInstance().GetD3D();
 
 	result = D3DX11CompileFromFile(vs_filename, NULL, NULL, "TextureVertexShader", "vs_5_0",
 		D3D10_SHADER_ENABLE_STRICTNESS, 0, NULL, &vertex_shader_buffer, &error_message, NULL);
@@ -64,12 +64,12 @@ void TextureShader::InitializeShader(WCHAR* vs_filename, WCHAR* ps_filename)
 		return;
 	}
 
-	result = d3d->get_device_()->CreateVertexShader(vertex_shader_buffer->GetBufferPointer(), vertex_shader_buffer->GetBufferSize(), NULL, &vertex_shader_);
+	result = d3d->GetDevice()->CreateVertexShader(vertex_shader_buffer->GetBufferPointer(), vertex_shader_buffer->GetBufferSize(), NULL, &vertex_shader_);
 	if (FAILED(result)) {
 		return;
 	}
 
-	result = d3d->get_device_()->CreatePixelShader(pixel_shader_buffer->GetBufferPointer(), pixel_shader_buffer->GetBufferSize(), NULL, &pixel_shader_);
+	result = d3d->GetDevice()->CreatePixelShader(pixel_shader_buffer->GetBufferPointer(), pixel_shader_buffer->GetBufferSize(), NULL, &pixel_shader_);
 	if (FAILED(result)) {
 		return;
 	}
@@ -92,7 +92,7 @@ void TextureShader::InitializeShader(WCHAR* vs_filename, WCHAR* ps_filename)
 
 	num_elements = sizeof(polygon_layout) / sizeof(polygon_layout[0]);
 
-	result = d3d->get_device_()->CreateInputLayout(polygon_layout, num_elements, vertex_shader_buffer->GetBufferPointer(), vertex_shader_buffer->GetBufferSize(), &layout_);
+	result = d3d->GetDevice()->CreateInputLayout(polygon_layout, num_elements, vertex_shader_buffer->GetBufferPointer(), vertex_shader_buffer->GetBufferSize(), &layout_);
 	if (FAILED(result)) {
 		return;
 	}
@@ -107,7 +107,7 @@ void TextureShader::InitializeShader(WCHAR* vs_filename, WCHAR* ps_filename)
 	matrix_buffer_desc.MiscFlags = 0;
 	matrix_buffer_desc.StructureByteStride = 0;
 
-	result = d3d->get_device_()->CreateBuffer(&matrix_buffer_desc, NULL, &matrix_buffer_);
+	result = d3d->GetDevice()->CreateBuffer(&matrix_buffer_desc, NULL, &matrix_buffer_);
 	if (FAILED(result)) {
 		return;
 	}
@@ -126,7 +126,7 @@ void TextureShader::InitializeShader(WCHAR* vs_filename, WCHAR* ps_filename)
 	sampler_desc.MinLOD = 0;
 	sampler_desc.MaxLOD = D3D11_FLOAT32_MAX;
 
-	result = d3d->get_device_()->CreateSamplerState(&sampler_desc, &sampler_state_);
+	result = d3d->GetDevice()->CreateSamplerState(&sampler_desc, &sampler_state_);
 	if (FAILED(result)) {
 		return;
 	}
@@ -169,7 +169,7 @@ void TextureShader::SetShaderParameters(D3DXMATRIX world_matrix,
 	D3DXMatrixTranspose(&view_matrix, &view_matrix);
 	D3DXMatrixTranspose(&projection_matrix, &projection_matrix);
 
-	ID3D11DeviceContext* device_context = World::GetInstance().get_d3d_()->get_device_context_();
+	ID3D11DeviceContext* device_context = World::GetInstance().GetD3D()->GetDeviceContext();
 
 	result = device_context->Map(matrix_buffer_, 0, D3D11_MAP_WRITE_DISCARD, 0, &mapped_resource);
 	if (FAILED(result)) {
@@ -193,7 +193,7 @@ void TextureShader::SetShaderParameters(D3DXMATRIX world_matrix,
 
 void TextureShader::RenderShader(int index_count)
 {
-	ID3D11DeviceContext* device_context = World::GetInstance().get_d3d_()->get_device_context_();
+	ID3D11DeviceContext* device_context = World::GetInstance().GetD3D()->GetDeviceContext();
 
 	device_context->IASetInputLayout(layout_);
 
