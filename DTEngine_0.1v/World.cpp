@@ -30,6 +30,12 @@ void World::Initialize(int screenWidth, int screenHeight)
 void World::Dispose()
 {
 	Asset::GetInstance().Dispose();
+	if (current_scene_)
+		delete current_scene_;
+
+	delete d3d_;
+	delete bitmap_;
+	delete texture_shader_;
 }
 
 void World::Render()
@@ -87,12 +93,12 @@ int World::GetKeyState(int vk)
 
 D3DXVECTOR2 World::GetMousePos()
 {
-	return D3DXVECTOR2(mouse_pos_.x, mouse_pos_.y);
+	return D3DXVECTOR2(mouse_pos_.x, mouse_pos_.y) + current_scene_->Center();
 }
 
-void World::RenderTextureShader(int index_count, ID3D11ShaderResourceView* texture)
+void World::RenderTextureShader(D3DXMATRIX worldMatrix, int index_count, ID3D11ShaderResourceView* texture)
 {
-	texture_shader_->Render(index_count, d3d_->GetWorldMatrix(), current_scene_->GetCamera()->GetViewMatrix(), d3d_->GetOrthoMatrix(), texture);
+	texture_shader_->Render(index_count, worldMatrix, current_scene_->GetCamera()->GetViewMatrix(), d3d_->GetOrthoMatrix(), texture);
 }
 
 Scene* World::GetCurrentScene()

@@ -46,6 +46,7 @@ private:
 	ID3D11DepthStencilState* depth_stencil_state_;
 	ID3D11DepthStencilView* depth_stencil_view_;
 	ID3D11RasterizerState* raster_state_;
+	ID3D11BlendState* blend_state_;
 	D3DXMATRIX projection_matrix_;
 	D3DXMATRIX world_matrix_;
 	D3DXMATRIX ortho_matrix_;

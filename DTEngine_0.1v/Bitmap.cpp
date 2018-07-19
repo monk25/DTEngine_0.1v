@@ -73,6 +73,7 @@ void Bitmap::InitializeBuffers(Texture* texture)
 
 void Bitmap::UpdateBuffers(Sprite* sprite)
 {
+	float halfWidth, halfHeight;
 	float left, right, top, bottom;
 	VertexType* vertices;
 	D3D11_MAPPED_SUBRESOURCE mapped_resource;
@@ -85,14 +86,17 @@ void Bitmap::UpdateBuffers(Sprite* sprite)
 	//previous_pos_x_ = position_x;
 	//previous_pos_y_ = position_y;
 
-	left = (float)((kScreenWidth / 2) * -1) + sprite->GetPos().x;
+	halfWidth = static_cast<float>(sprite->GetRect().Width()) * 0.5f;
+	halfHeight = static_cast<float>(sprite->GetRect().Height()) * 0.5f;
+
+	left = (float)((kScreenWidth / 2) * -1) + sprite->GetPosition().x;
 	right = left + (float)sprite->GetRect().Width();
-	top = (float)(kScreenHeight / 2) - sprite->GetPos().y;
+	top = (float)(kScreenHeight / 2) - sprite->GetPosition().y;
 	bottom = top - (float)sprite->GetRect().Height();
 
 	vertices = new VertexType[sprite->GetTexture()->GetVertexCount()];
 
-	vertices[0].position = D3DXVECTOR3(left, top, 0.0f);
+	/*vertices[0].position = D3DXVECTOR3(left, top, 0.0f);
 	vertices[0].texture = D3DXVECTOR2(0.0f, 0.0f);
 
 	vertices[1].position = D3DXVECTOR3(right, bottom, 0.0f);
@@ -108,6 +112,24 @@ void Bitmap::UpdateBuffers(Sprite* sprite)
 	vertices[4].texture = D3DXVECTOR2(1.0f, 0.0f);
 
 	vertices[5].position = D3DXVECTOR3(right, bottom, 0.0f);
+	vertices[5].texture = D3DXVECTOR2(1.0f, 1.0f);*/
+
+	vertices[0].position = D3DXVECTOR3(-halfWidth, halfHeight, 0.0f);
+	vertices[0].texture = D3DXVECTOR2(0.0f, 0.0f);
+
+	vertices[1].position = D3DXVECTOR3(halfWidth, -halfHeight, 0.0f);
+	vertices[1].texture = D3DXVECTOR2(1.0f, 1.0f);
+
+	vertices[2].position = D3DXVECTOR3(-halfWidth, -halfHeight, 0.0f);
+	vertices[2].texture = D3DXVECTOR2(0.0f, 1.0f);
+
+	vertices[3].position = D3DXVECTOR3(-halfWidth, halfHeight, 0.0f);
+	vertices[3].texture = D3DXVECTOR2(0.0f, 0.0f);
+
+	vertices[4].position = D3DXVECTOR3(halfWidth, halfHeight, 0.0f);
+	vertices[4].texture = D3DXVECTOR2(1.0f, 0.0f);
+
+	vertices[5].position = D3DXVECTOR3(halfWidth, -halfHeight, 0.0f);
 	vertices[5].texture = D3DXVECTOR2(1.0f, 1.0f);
 
 	ID3D11DeviceContext* device_context = World::GetInstance().GetD3D()->GetDeviceContext();

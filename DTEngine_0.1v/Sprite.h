@@ -18,6 +18,5 @@ public:
 
 private:
 	Texture* texture_;
-	D3DXCOLOR color_;
 };
 

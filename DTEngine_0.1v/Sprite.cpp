@@ -4,11 +4,11 @@
 #include "Asset.h"
 
 
-Sprite::Sprite() : color_(1, 1, 1, 1), texture_(nullptr)
+Sprite::Sprite() : texture_(nullptr)
 {
 }
 
-Sprite::Sprite(wstring path) : color_(1, 1, 1, 1), texture_(nullptr)
+Sprite::Sprite(wstring path) : texture_(nullptr)
 {
 	SetPath(path);
 }
@@ -16,7 +16,6 @@ Sprite::Sprite(wstring path) : color_(1, 1, 1, 1), texture_(nullptr)
 
 Sprite::~Sprite()
 {
-	delete texture_;
 }
 
 void Sprite::SetPath(wstring path)
@@ -31,7 +30,7 @@ void Sprite::Render()
 	Entity::Render();
 
 	World::GetInstance().GetBitmap()->Render(this);
-	World::GetInstance().RenderTextureShader(texture_->GetIndexCount(), texture_->GetTexture());
+	World::GetInstance().RenderTextureShader(GetWorldMatrix(), texture_->GetIndexCount(), texture_->GetTexture());
 }
 
 Texture* Sprite::GetTexture()

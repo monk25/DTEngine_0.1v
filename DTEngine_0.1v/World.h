@@ -23,7 +23,7 @@ public:
 	int GetKeyState(int vk);
 	D3DXVECTOR2 GetMousePos();
 
-	void RenderTextureShader(int index_count, ID3D11ShaderResourceView* texture);
+	void RenderTextureShader(D3DXMATRIX worldMatrix, int index_count, ID3D11ShaderResourceView* texture);
 
 	Scene* GetCurrentScene();
 	D3D* GetD3D();

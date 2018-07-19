@@ -46,6 +46,7 @@ bool D3D::Initialize(int kScreenWidth, int kScreenHidth, HWND hwnd)
 	D3D11_DEPTH_STENCIL_DESC depth_stencil_desc;
 	D3D11_DEPTH_STENCIL_VIEW_DESC depth_stencil_view_desc;
 	D3D11_RASTERIZER_DESC raster_desc;
+	D3D11_BLEND_DESC blend_desc;
 	D3D11_VIEWPORT viewport;
 	float field_of_view, screen_aspect;
 	D3D11_DEPTH_STENCIL_DESC depth_disabled_stencil_desc;
@@ -209,7 +210,9 @@ bool D3D::Initialize(int kScreenWidth, int kScreenHidth, HWND hwnd)
 	if (FAILED(result)) {
 		return false;
 	}
+
 	device_context_->OMSetRenderTargets(1, &render_target_view_, depth_stencil_view_);
+	
 	raster_desc.AntialiasedLineEnable = false;
 	raster_desc.CullMode = D3D11_CULL_BACK;
 	raster_desc.DepthBias = 0;
@@ -227,6 +230,24 @@ bool D3D::Initialize(int kScreenWidth, int kScreenHidth, HWND hwnd)
 	}
 
 	device_context_->RSSetState(raster_state_);
+
+	blend_desc.AlphaToCoverageEnable = FALSE;
+	blend_desc.IndependentBlendEnable = FALSE;
+	blend_desc.RenderTarget[0].BlendEnable = TRUE;
+	blend_desc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+	blend_desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+	blend_desc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+	blend_desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+	blend_desc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+	blend_desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
+	blend_desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+
+	result = device_->CreateBlendState(&blend_desc, &blend_state_);
+	if (FAILED(result)) {
+		return false;
+	}
+
+	device_context_->OMSetBlendState(blend_state_, 0, 0xffffffff);
 
 	viewport.Width = (float)kScreenWidth;
 	viewport.Height = (float)kScreenHidth;

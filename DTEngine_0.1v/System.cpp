@@ -105,14 +105,14 @@ void System::InitializeWindows()
 	}
 
 	hwnd_ = CreateWindowEx(WS_EX_APPWINDOW, application_name_, application_name_,
-		WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_POPUP, pos_x, pos_y,
+		WS_OVERLAPPEDWINDOW/*WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_POPUP*/, pos_x, pos_y,
 		screen_width_, screen_height_, NULL, NULL, hinstance_, NULL);
 
 	ShowWindow(hwnd_, SW_SHOW);
 	SetForegroundWindow(hwnd_);
 	SetFocus(hwnd_);
 
-	ShowCursor(false);
+	ShowCursor(true);
 
 	return;
 }
