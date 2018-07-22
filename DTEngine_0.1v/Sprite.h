@@ -16,7 +16,11 @@ public:
 	Texture* GetTexture();
 	void SetTexture(Texture* texture);
 
+	bool GetLightEnabled();
+	void SetLightEnabled(bool enable_light);
+
 private:
 	Texture* texture_;
+	bool light_enabled_;
 };
 

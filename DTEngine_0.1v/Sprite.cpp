@@ -4,11 +4,11 @@
 #include "Asset.h"
 
 
-Sprite::Sprite() : texture_(nullptr)
+Sprite::Sprite() : texture_(nullptr), light_enabled_(false)
 {
 }
 
-Sprite::Sprite(wstring path) : texture_(nullptr)
+Sprite::Sprite(wstring path) : texture_(nullptr), light_enabled_(false)
 {
 	SetPath(path);
 }
@@ -30,7 +30,11 @@ void Sprite::Render()
 	Entity::Render();
 
 	World::GetInstance().GetBitmap()->Render(this);
-	World::GetInstance().RenderTextureShader(GetWorldMatrix(), texture_->GetIndexCount(), texture_->GetTexture());
+
+	if(light_enabled_)
+		World::GetInstance().RenderLightShader(GetWorldMatrix(), texture_->GetIndexCount(), texture_->GetTexture());
+	else
+		World::GetInstance().RenderTextureShader(GetWorldMatrix(), texture_->GetIndexCount(), texture_->GetTexture());
 }
 
 Texture* Sprite::GetTexture()
@@ -41,4 +45,14 @@ Texture* Sprite::GetTexture()
 void Sprite::SetTexture(Texture* texture)
 {
 	texture_ = texture;
+}
+
+bool Sprite::GetLightEnabled()
+{
+	return light_enabled_;
+}
+
+void Sprite::SetLightEnabled(bool light_enabled)
+{
+	light_enabled_ = light_enabled;
 }

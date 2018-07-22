@@ -61,6 +61,9 @@
     <Filter Include="Engine\Animation">
       <UniqueIdentifier>{0b5023a9-31dc-48f4-8c0f-8ae7f67db628}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Light">
+      <UniqueIdentifier>{0a536c98-3f7d-42da-a29a-57f39552cbe1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -110,6 +113,12 @@
     </ClCompile>
     <ClCompile Include="Animation.cpp">
       <Filter>Engine\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="LightShader.cpp">
+      <Filter>Engine\Shader\ShaderClass</Filter>
+    </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Engine\Light</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -164,12 +173,24 @@
     <ClInclude Include="Animation.h">
       <Filter>Engine\Animation</Filter>
     </ClInclude>
+    <ClInclude Include="LightShader.h">
+      <Filter>Engine\Shader\ShaderClass</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Engine\Light</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Shader\Texture.ps">
       <Filter>Engine\Shader\HLSL</Filter>
     </None>
     <None Include="..\Shader\Texture.vs">
+      <Filter>Engine\Shader\HLSL</Filter>
+    </None>
+    <None Include="..\Shader\Light.ps">
+      <Filter>Engine\Shader\HLSL</Filter>
+    </None>
+    <None Include="..\Shader\Light.vs">
       <Filter>Engine\Shader\HLSL</Filter>
     </None>
   </ItemGroup>

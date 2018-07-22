@@ -9,7 +9,7 @@ D3D::D3D() :
 	depth_stencil_state_(nullptr), depth_stencil_view_(nullptr),
 	raster_state_(nullptr), depth_disabled_stencil_state_(nullptr)
 {
-	Initialize(application_handle_->get_screen_width_(), application_handle_->get_screen_height_(), application_handle_->get_hwnd_());
+	Initialize(application_handle_->GetScreenWidth(), application_handle_->GetScreenHeight(), application_handle_->GetHwnd());
 }
 
 
@@ -29,7 +29,7 @@ D3D::~D3D()
 	return;
 }
 
-bool D3D::Initialize(int kScreenWidth, int kScreenHidth, HWND hwnd)
+bool D3D::Initialize(int kScreenWidth, int kScreenHeight, HWND hwnd)
 {
 	HRESULT result;
 	IDXGIFactory* factory;
@@ -84,8 +84,8 @@ bool D3D::Initialize(int kScreenWidth, int kScreenHidth, HWND hwnd)
 	}
 
 	for (int i = 0; i < num_modes; i++) {
-		if (display_mode_list[i].Width == (unsigned int)kScreenWidth) {
-			if (display_mode_list[i].Height == (unsigned int)kScreenHidth) {
+		if (display_mode_list[i].Width == kScreenWidth) {
+			if (display_mode_list[i].Height == kScreenHeight) {
 				numerator = display_mode_list[i].RefreshRate.Numerator;
 				denominator = display_mode_list[i].RefreshRate.Denominator;
 			}
@@ -112,7 +112,7 @@ bool D3D::Initialize(int kScreenWidth, int kScreenHidth, HWND hwnd)
 	ZeroMemory(&swap_chain_desc, sizeof(swap_chain_desc));
 	swap_chain_desc.BufferCount = 1;
 	swap_chain_desc.BufferDesc.Width = kScreenWidth;
-	swap_chain_desc.BufferDesc.Height = kScreenHidth;
+	swap_chain_desc.BufferDesc.Height = kScreenHeight;
 	swap_chain_desc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 
 	if (vsync_enabled_) {
@@ -162,7 +162,7 @@ bool D3D::Initialize(int kScreenWidth, int kScreenHidth, HWND hwnd)
 
 	ZeroMemory(&depth_buffer_desc, sizeof(depth_buffer_desc));
 	depth_buffer_desc.Width = kScreenWidth;
-	depth_buffer_desc.Height = kScreenHidth;
+	depth_buffer_desc.Height = kScreenHeight;
 	depth_buffer_desc.MipLevels = 1;
 	depth_buffer_desc.ArraySize = 1;
 	depth_buffer_desc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
@@ -250,7 +250,7 @@ bool D3D::Initialize(int kScreenWidth, int kScreenHidth, HWND hwnd)
 	device_context_->OMSetBlendState(blend_state_, 0, 0xffffffff);
 
 	viewport.Width = (float)kScreenWidth;
-	viewport.Height = (float)kScreenHidth;
+	viewport.Height = (float)kScreenHeight;
 	viewport.MinDepth = 0.0f;
 	viewport.MaxDepth = 1.0f;
 	viewport.TopLeftX = 0.0f;
@@ -258,10 +258,10 @@ bool D3D::Initialize(int kScreenWidth, int kScreenHidth, HWND hwnd)
 	device_context_->RSSetViewports(1, &viewport);
 
 	field_of_view = (float)D3DX_PI / 4.0f;
-	screen_aspect = (float)kScreenWidth / (float)kScreenHidth;
+	screen_aspect = (float)kScreenWidth / (float)kScreenHeight;
 	D3DXMatrixPerspectiveFovLH(&projection_matrix_, field_of_view, screen_aspect, kScreenNear, kScreenDepth);
 	D3DXMatrixIdentity(&world_matrix_);
-	D3DXMatrixOrthoLH(&ortho_matrix_, (float)kScreenWidth, (float)kScreenHidth, kScreenNear, kScreenDepth);
+	D3DXMatrixOrthoLH(&ortho_matrix_, (float)kScreenWidth, (float)kScreenHeight, kScreenNear, kScreenDepth);
 
 	ZeroMemory(&depth_disabled_stencil_desc, sizeof(depth_disabled_stencil_desc));
 

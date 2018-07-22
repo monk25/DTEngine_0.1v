@@ -5,11 +5,11 @@ cbuffer MatrixBuffer
 	matrix projectionMatrix;
 };
 
-cbuffer CameraBuffer
-{
-	float3 cameraPosition;
-	float padding;
-};
+//cbuffer CameraBuffer
+//{
+//	float3 cameraPosition;
+//	float padding;
+//};
 
 struct VertexInputType
 {
@@ -42,10 +42,10 @@ PixelInputType LightVertexShader(VertexInputType input)
 	output.normal = mul(input.normal, (float3x3)worldMatrix);
 	output.normal = normalize(output.normal);
 
-	worldPosition = mul(input.position, worldMatrix);
+	//worldPosition = mul(input.position, worldMatrix);
 
-	output.viewDirection = cameraPosition.xyz - worldPosition.xyz;
-	output.viewDirection = normalize(output.viewDirection);
+	//output.viewDirection = cameraPosition.xyz - worldPosition.xyz;
+	//output.viewDirection = normalize(output.viewDirection);
 
 	return output;
 }

@@ -24,6 +24,7 @@ void World::Initialize(int screenWidth, int screenHeight)
 	d3d_ = new D3D();
 	bitmap_ = new Bitmap();
 	texture_shader_ = new TextureShader();
+	light_shader_ = new LightShader();
 	ChangeScene(new TestScene());
 }
 
@@ -36,6 +37,7 @@ void World::Dispose()
 	delete d3d_;
 	delete bitmap_;
 	delete texture_shader_;
+	delete light_shader_;
 }
 
 void World::Render()
@@ -68,9 +70,9 @@ void World::Update()
 	}
 
 	GetCursorPos(&mouse_pos_);
-	ScreenToClient(application_handle_->get_hwnd_(), &mouse_pos_);
+	ScreenToClient(application_handle_->GetHwnd(), &mouse_pos_);
 
-	for (auto* timer : timers)
+	for (auto* timer : timers_)
 		timer->Update(dt_);
 
 	if (current_scene_)
@@ -96,9 +98,15 @@ D3DXVECTOR2 World::GetMousePos()
 	return D3DXVECTOR2(mouse_pos_.x, mouse_pos_.y) + current_scene_->Center();
 }
 
-void World::RenderTextureShader(D3DXMATRIX worldMatrix, int index_count, ID3D11ShaderResourceView* texture)
+void World::RenderTextureShader(D3DXMATRIX world_matrix, int index_count, ID3D11ShaderResourceView* texture)
 {
-	texture_shader_->Render(index_count, worldMatrix, current_scene_->GetCamera()->GetViewMatrix(), d3d_->GetOrthoMatrix(), texture);
+	texture_shader_->Render(index_count, world_matrix, current_scene_->GetCamera()->GetViewMatrix(), d3d_->GetOrthoMatrix(), texture);
+}
+
+void World::RenderLightShader(D3DXMATRIX world_matrix, int index_count, ID3D11ShaderResourceView* texture)
+{
+	light_shader_->Render(index_count, world_matrix, current_scene_->GetCamera()->GetViewMatrix(), d3d_->GetOrthoMatrix(), texture, 
+		current_scene_->GetLight()->GetDirection(), current_scene_->GetLight()->GetAmbientColor(), current_scene_->GetLight()->GetDiffuseColor());
 }
 
 Scene* World::GetCurrentScene()
@@ -109,6 +117,11 @@ Scene* World::GetCurrentScene()
 D3D* World::GetD3D()
 {
 	return d3d_;
+}
+
+vector<Timer*>* World::GetTimers()
+{
+	return &timers_;
 }
 
 Bitmap* World::GetBitmap()

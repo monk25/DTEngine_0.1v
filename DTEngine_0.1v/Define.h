@@ -71,14 +71,14 @@ inline float Angle(D3DXVECTOR2 v1, D3DXVECTOR2 v2)
 
 inline int Random(int from, int to)
 {
-	static default_random_engine d(timeGetTime());
+	static default_random_engine d(clock());
 	uniform_int_distribution<int> random(from, to);
 	return random(d);
 }
 
 inline float Random(float from, float to)
 {
-	static default_random_engine d(timeGetTime());
+	static default_random_engine d(clock());
 	uniform_real_distribution<float> random(from, to);
 	return random(d);
 }

@@ -3,6 +3,7 @@
 #include "Singleton.h"
 #include "D3D.h"
 #include "TextureShader.h"
+#include "LightShader.h"
 #include "Bitmap.h"
 #include "Scene.h"
 #include "Timer.h"
@@ -23,10 +24,12 @@ public:
 	int GetKeyState(int vk);
 	D3DXVECTOR2 GetMousePos();
 
-	void RenderTextureShader(D3DXMATRIX worldMatrix, int index_count, ID3D11ShaderResourceView* texture);
+	void RenderTextureShader(D3DXMATRIX world_matrix, int index_count, ID3D11ShaderResourceView* texture);
+	void RenderLightShader(D3DXMATRIX world_matrix, int index_count, ID3D11ShaderResourceView* texture);
 
 	Scene* GetCurrentScene();
 	D3D* GetD3D();
+	vector<Timer*>* GetTimers();
 	Bitmap* GetBitmap();
 	TextureShader* GetTextureShader();
 
@@ -41,9 +44,10 @@ private:
 	clock_t last_clock_;
 	double dt_;
 
-	vector<Timer*> timers;
+	vector<Timer*> timers_;
 	D3D* d3d_;
 	Bitmap* bitmap_;
 	TextureShader* texture_shader_;
+	LightShader* light_shader_;
 };
 

@@ -11,11 +11,12 @@ public:
 
 	void Start();
 	void Stop();
-	void Reset(float duration = 0, int cout = 0, bool auto_start = false);
+	void Reset(float duration = 0, int cout = 0, bool auto_start = true);
 
-private:
 	function<void()> OnTick;
 	function<void()> OnFinished;
+
+private:
 
 	pair<float, float> duration_;
 	pair<int, int> count_;

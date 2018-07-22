@@ -47,7 +47,7 @@ void TextureShader::InitializeShader(WCHAR* vs_filename, WCHAR* ps_filename)
 			OutputShaderErrorMessage(error_message, vs_filename);
 		}
 		else {
-			MessageBox(application_handle_->get_hwnd_(), vs_filename, L"Missing Shader File", MB_OK);
+			MessageBox(application_handle_->GetHwnd(), vs_filename, L"Missing Shader File", MB_OK);
 		}
 		return;
 	}
@@ -59,7 +59,7 @@ void TextureShader::InitializeShader(WCHAR* vs_filename, WCHAR* ps_filename)
 			OutputShaderErrorMessage(error_message, ps_filename);
 		}
 		else {
-			MessageBox(application_handle_->get_hwnd_(), ps_filename, L"Missing Shader File", MB_OK);
+			MessageBox(application_handle_->GetHwnd(), ps_filename, L"Missing Shader File", MB_OK);
 		}
 		return;
 	}
@@ -154,7 +154,7 @@ void TextureShader::OutputShaderErrorMessage(ID3D10Blob* error_message, WCHAR* s
 	error_message->Release();
 	error_message = nullptr;
 
-	MessageBox(application_handle_->get_hwnd_(), L"Error compiling shader. Check Shader-error.txt",shader_filename, MB_OK);
+	MessageBox(application_handle_->GetHwnd(), L"Error compiling shader. Check Shader-error.txt",shader_filename, MB_OK);
 }
 
 void TextureShader::SetShaderParameters(D3DXMATRIX world_matrix,

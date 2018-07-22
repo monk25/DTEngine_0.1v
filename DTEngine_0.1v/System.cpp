@@ -88,7 +88,8 @@ void System::InitializeWindows()
 	if (kFullScreen) {
 		memset(&dm_screen_settings, 0, sizeof(dm_screen_settings));
 		dm_screen_settings.dmSize		= sizeof(dm_screen_settings);
-		dm_screen_settings.dmPelsWidth	= screen_width_;
+		dm_screen_settings.dmPelsWidth = screen_width_;
+		dm_screen_settings.dmPelsHeight	= screen_height_;
 		dm_screen_settings.dmBitsPerPel = 32;
 		dm_screen_settings.dmFields		= DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
 
@@ -97,8 +98,8 @@ void System::InitializeWindows()
 		pos_x = pos_y = 0;
 	}
 	else {
-		pos_x = (screen_width_	- kScreenWidth)	 / 2;
-		pos_y = (screen_height_ - kScreenHeight) / 2;
+		pos_x = (screen_width_ - kScreenWidth / 72 - kScreenWidth)	 / 2;
+		pos_y = (screen_height_ - kScreenHeight / 18 - kScreenHeight) / 2;
 
 		screen_width_	= kScreenWidth;
 		screen_height_	= kScreenHeight;
@@ -106,7 +107,7 @@ void System::InitializeWindows()
 
 	hwnd_ = CreateWindowEx(WS_EX_APPWINDOW, application_name_, application_name_,
 		WS_OVERLAPPEDWINDOW/*WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_POPUP*/, pos_x, pos_y,
-		screen_width_, screen_height_, NULL, NULL, hinstance_, NULL);
+		screen_width_ + screen_width_ / 72, screen_height_ + screen_height_ / 18, NULL, NULL, hinstance_, NULL);
 
 	ShowWindow(hwnd_, SW_SHOW);
 	SetForegroundWindow(hwnd_);
@@ -131,27 +132,27 @@ void System::ShutdownWindows()
 	return;
 }
 
-int System::get_screen_width_()
+int System::GetScreenWidth()
 {
 	return screen_width_;
 }
 
-void System::set_screen_width_(int screen_width)
+void System::SetScreenWidth(int screen_width)
 {
 	screen_width_ = screen_width;
 }
 
-int System::get_screen_height_()
+int System::GetScreenHeight()
 {
 	return screen_height_;
 }
 
-void System::set_screen_height_(int screen_height)
+void System::SetScreenHeight(int screen_height)
 {
 	screen_height_ = screen_height;
 }
 
-HWND System::get_hwnd_()
+HWND System::GetHwnd()
 {
 	return hwnd_;
 }

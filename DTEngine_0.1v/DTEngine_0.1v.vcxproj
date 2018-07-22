@@ -153,6 +153,8 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="D3D.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Light.cpp" />
+    <ClCompile Include="LightShader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -175,6 +177,8 @@
     <ClInclude Include="D3D.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="Light.h" />
+    <ClInclude Include="LightShader.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Singleton.h" />
@@ -187,6 +191,8 @@
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Shader\Light.ps" />
+    <None Include="..\Shader\Light.vs" />
     <None Include="..\Shader\Texture.ps" />
     <None Include="..\Shader\Texture.vs" />
   </ItemGroup>

@@ -12,13 +12,13 @@ public:
 
 	LRESULT CALLBACK MessageHandle(HWND, UINT, WPARAM, LPARAM);
 
-	int get_screen_width_();
-	void set_screen_width_(int screen_width);
+	int GetScreenWidth();
+	void SetScreenWidth(int screen_width);
 
-	int get_screen_height_();
-	void set_screen_height_(int screen_width);
+	int GetScreenHeight();
+	void SetScreenHeight(int screen_width);
 
-	HWND get_hwnd_();
+	HWND GetHwnd();
 
 private:
 	bool Frame();

@@ -116,21 +116,27 @@ void Bitmap::UpdateBuffers(Sprite* sprite)
 
 	vertices[0].position = D3DXVECTOR3(-halfWidth, halfHeight, 0.0f);
 	vertices[0].texture = D3DXVECTOR2(0.0f, 0.0f);
+	vertices[0].normal = D3DXVECTOR3(0.0f, 0.0f, -1.0f);
 
 	vertices[1].position = D3DXVECTOR3(halfWidth, -halfHeight, 0.0f);
 	vertices[1].texture = D3DXVECTOR2(1.0f, 1.0f);
+	vertices[1].normal = D3DXVECTOR3(0.0f, 0.0f, -1.0f);
 
 	vertices[2].position = D3DXVECTOR3(-halfWidth, -halfHeight, 0.0f);
 	vertices[2].texture = D3DXVECTOR2(0.0f, 1.0f);
+	vertices[2].normal = D3DXVECTOR3(0.0f, 0.0f, -1.0f);
 
 	vertices[3].position = D3DXVECTOR3(-halfWidth, halfHeight, 0.0f);
 	vertices[3].texture = D3DXVECTOR2(0.0f, 0.0f);
+	vertices[3].normal = D3DXVECTOR3(0.0f, 0.0f, -1.0f);
 
 	vertices[4].position = D3DXVECTOR3(halfWidth, halfHeight, 0.0f);
 	vertices[4].texture = D3DXVECTOR2(1.0f, 0.0f);
+	vertices[4].normal = D3DXVECTOR3(0.0f, 0.0f, -1.0f);
 
 	vertices[5].position = D3DXVECTOR3(halfWidth, -halfHeight, 0.0f);
 	vertices[5].texture = D3DXVECTOR2(1.0f, 1.0f);
+	vertices[5].normal = D3DXVECTOR3(0.0f, 0.0f, -1.0f);
 
 	ID3D11DeviceContext* device_context = World::GetInstance().GetD3D()->GetDeviceContext();
 	device_context->Map(sprite->GetTexture()->GetVertexBuffer(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mapped_resource);

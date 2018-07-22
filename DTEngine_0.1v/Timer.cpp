@@ -8,12 +8,14 @@ Timer::Timer() : active_(false)
 	OnTick = []() {};
 	OnFinished = []() {};
 
-	World::GetInstance();
+	World::GetInstance().GetTimers()->push_back(this);
 }
 
 
 Timer::~Timer()
 {
+	vector<Timer*> timers = *World::GetInstance().GetTimers();
+	timers.erase(remove(timers.begin(), timers.end(), this), timers.end());
 }
 
 void Timer::Update(float dt)
